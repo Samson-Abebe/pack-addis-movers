@@ -1,14 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
-import Image from '~/components/common/Image.astro';
+
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import type { FeatureTabs as Props } from '~/types';
-
-// Features presented as tabs: the list of tabs on one side, the image of the
-// selected tab on the other. Keyboard-accessible (arrow keys, Home/End) with
-// proper tablist/tab/tabpanel roles. Without JavaScript the first tab's panel
-// is shown and the rest stay hidden, so the section still reads correctly.
 
 const {
   title = await Astro.slots.render('title'),
@@ -77,7 +72,7 @@ const vertical = orientation === 'vertical';
 
     <div class:list={[vertical ? ['lg:col-span-7', isReversed ? 'lg:order-1' : ''] : '']}>
       {
-        items.map(({ title: tabTitle, description, image }, index) => (
+        items.map(({ title: tabTitle, description, videoSrc }, index) => (
           <div
             role="tabpanel"
             id={`${uid}-panel-${index}`}
@@ -86,26 +81,24 @@ const vertical = orientation === 'vertical';
             hidden={index !== 0}
             class="outline-offset-4"
           >
-            {image && (
-              <div class="relative overflow-hidden rounded-lg shadow-lg bg-gray-100 dark:bg-slate-800">
-                {typeof image === 'string' ? (
-                  <Fragment set:html={image} />
-                ) : (
-                  <Image
-                    class="w-full"
-                    widths={[400, 768, 1024]}
-                    sizes="(max-width: 1023px) 100vw, 720px"
-                    width={720}
-                    height={480}
-                    layout="constrained"
-                    format="webp"
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    alt={tabTitle ?? ''}
-                    {...image}
-                  />
-                )}
-              </div>
-            )}
+             {videoSrc && (
+  <div class="w-full max-w-[325px] md:max-w-[550px] mx-auto iframe-wrapper" data-src={videoSrc} data-title={tabTitle}>
+    {index === 0 ? (
+      <iframe
+        height="550"
+        width="550"
+        src={videoSrc}
+        title={tabTitle}
+        frameborder="0"
+        class="w-full max-w-[325px] md:max-w-[550px] mx-auto"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        loading="lazy"
+      />
+    ) : null}
+  </div>
+)}
+
             {!vertical && description && (
               <p class="mx-auto mt-6 max-w-3xl text-center text-muted" set:html={description} />
             )}
@@ -115,24 +108,63 @@ const vertical = orientation === 'vertical';
     </div>
   </aw-tabs>
 </WidgetWrapper>
-
 <script>
   class AwTabs extends HTMLElement {
     connectedCallback() {
-      const tabs = [...this.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
-      const panels = [...this.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
+      const tabs = Array.from(this.querySelectorAll('[role="tab"]')) as HTMLButtonElement[];
+      const panels = Array.from(this.querySelectorAll('[role="tabpanel"]')) as HTMLElement[];
+
       const select = (index: number, focus = false) => {
         tabs.forEach((tab, i) => {
           const active = i === index;
+          const panel = panels[i];
+
           tab.setAttribute('aria-selected', String(active));
           tab.tabIndex = active ? 0 : -1;
-          panels[i].hidden = !active;
+          if (panel) {
+            panel.hidden = !active;
+          }
+
+          const wrapper = panel?.querySelector('.iframe-wrapper') as HTMLElement | null;
+
+          if (wrapper) {
+            const videoSrc = wrapper.dataset.src;
+            const videoTitle = wrapper.dataset.title || '';
+
+            if (active) {
+              // Create and inject the iframe fresh when selected
+              if (videoSrc && !wrapper.querySelector('iframe')) {
+                const iframe = document.createElement('iframe');
+                iframe.height = '550';
+                iframe.width = '550';
+                iframe.src = videoSrc;
+                iframe.title = videoTitle;
+                iframe.setAttribute('frameborder', '0');
+                iframe.className = "w-full max-w-[325px] md:max-w-[550px] mx-auto";
+                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share');
+                iframe.setAttribute('allowfullscreen', '');
+                iframe.setAttribute('loading', 'lazy');
+                wrapper.appendChild(iframe);
+              }
+            } else {
+              // Completely destroy the iframe element to stop background audio/video
+              const iframe = wrapper.querySelector('iframe');
+              if (iframe) {
+                iframe.remove();
+              }
+            }
+          }
         });
-        if (focus) tabs[index].focus();
+
+        if (focus && tabs[index]) {
+          tabs[index].focus();
+        }
       };
+
       tabs.forEach((tab, index) => {
         tab.addEventListener('click', () => select(index));
-        tab.addEventListener('keydown', (event) => {
+
+        tab.addEventListener('keydown', (event: KeyboardEvent) => {
           const keys: Record<string, number> = {
             ArrowRight: index + 1,
             ArrowDown: index + 1,
@@ -141,12 +173,25 @@ const vertical = orientation === 'vertical';
             Home: 0,
             End: tabs.length - 1,
           };
+
           if (!(event.key in keys)) return;
+
           event.preventDefault();
           select((keys[event.key] + tabs.length) % tabs.length, true);
         });
       });
+
+      const activeIndex = tabs.findIndex(
+        (tab) => tab.getAttribute('aria-selected') === 'true'
+      );
+
+      select(activeIndex >= 0 ? activeIndex : 0);
     }
   }
-  if (!customElements.get('aw-tabs')) customElements.define('aw-tabs', AwTabs);
+
+  if (!customElements.get('aw-tabs')) {
+    customElements.define('aw-tabs', AwTabs);
+  }
 </script>
+
+

@@ -1,0 +1,100 @@
+---
+import Layout from '~/layouts/LandingLayout.astro';
+
+import Hero2 from '~/components/widgets/Hero2.astro';
+
+import StickyCTA from '~/components/widgets/StickyCTA.astro';
+import Timeline from '~/components/widgets/Timeline.astro';
+
+
+
+
+
+
+const destination = 'https://github.com/arthelokyo/astrowind';
+
+const metadata = {
+  title: 'Click-Through Landing Page Example & Guide',
+  description:
+    'A complete click-through landing page built with AstroWind: message match, one destination, preview of what comes next, proof and FAQ, with notes on why each block moves the click. Free Astro template.',
+  openGraph: { type: 'website' },
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- 1. Hero: the promise and the first click to the destination -->
+
+<Hero2
+  tagline="Fragile & Delicate Item Specialists"
+  title="Extra-Care Handling for Glass, Ceramics & Decor!"
+  subtitle="Protect your most delicate valuables with Trustpack and Move. We guarantee safe delivery of fragile items such as glass, ceramics, fine art, and home decorations using specialized bubble packaging and multi-layer cushioning. Our trained specialists inspect, custom-box, and hand-carry high-fragility pieces to guarantee zero breakage from start to finish."
+  image={{
+    src: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    alt: 'Careful Packaging of Delicate Home Decoration Items',
+    class: 'w-full h-auto object-contain max-h-none',
+  }}
+/>
+
+  
+
+  <!-- 2. What the page is for -->
+
+
+  <!-- 3. What to put on it -->
+
+
+  <!-- 4. The journey the visitor takes -->
+
+
+  <!-- 5. Rules of thumb -->
+
+  <Timeline
+    id="roadmap"
+ tagline="Fragile Care Workflow"
+title="Multi-Layer Cushioning for High-Value Items"
+subtitle="A specialized zero-breakage packing method built specifically for glass, ceramics, and luxury artwork."
+items={[
+  {
+    date: 'Step 1',
+    title: 'Fragile Item Inspection & Cataloging',
+    description:
+      'We identify and list all glass table tops, mirrors, ceramic artwork, chandeliers, and delicate home decor requiring special handling.',
+    icon: 'tabler:glass-full',
+    highlight: true,
+  },
+  {
+    date: 'Step 2',
+    title: 'Multi-Layer Bubble & Cardboard Encapsulation',
+    description:
+      'Each fragile item is wrapped in dense bubble sheets, corner protectors, and reinforced double-wall cardboard boxes.',
+    icon: 'tabler:layers-difference',
+  },
+  {
+    date: 'Step 3',
+    title: 'Air-Cushioned Transit Staging',
+    description:
+      'Packed fragile boxes are strapped securely in protected vehicle sections equipped with shock-absorbing floor mats.',
+    icon: 'tabler:shield-heart',
+  },
+  {
+    date: 'Step 4',
+    title: 'Unpacking & Hand Placement',
+    description:
+      'Our team carefully uncrates each item, verifies zero damage, and hand-places your decor and glassware right where you want it.',
+    icon: 'tabler:sparkles',
+  },
+]}
+    >
+      <Fragment slot="bg">
+      <div
+        class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%)]"
+      >
+      </div>
+    </Fragment>
+</Timeline>
+
+
+  <!-- On phones the hero button is long gone; the bar brings the click back once the reader scrolls -->
+
+  <StickyCTA text="Get the template" href={destination} target="_blank" label="One destination, three placements" />
+</Layout>

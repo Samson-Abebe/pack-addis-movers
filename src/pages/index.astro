@@ -18,8 +18,11 @@ import StructuredData from '~/components/common/StructuredData.astro';
 import { SITE, METADATA, I18N } from 'astrowind:config';
 import favIconSvg from '~/assets/favicons/favicon.svg';
 
+//this is to add the startup on the routing
+
+//finshid hir
 const metadata = {
-  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  title: 'AstroWind — Free template for creatinHerog websites with Astro + Tailwind CSS',
   ignoreTitleTemplate: true,
 };
 
@@ -56,18 +59,15 @@ const structuredData = [
 
   <Hero
     tagline="Free & open source"
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/arthelokyo/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-      { text: 'Learn more', href: '#features' },
-    ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
+ 
   >
+    <Fragment slot="image">
+      <video class="mx-auto w-full rounded-md" autoplay muted loop playsinline controls>
+        <source src="/videos/hero.mp4" type="video/mp4" />
+        Your browser does not support video.
+      </video>
+    </Fragment>
+
     <Fragment slot="title">
       Free template for <span class="hidden xl:inline">creating websites with</span>
       <span class="text-accent dark:text-white"> Astro v7</span> + Tailwind CSS
@@ -91,13 +91,13 @@ const structuredData = [
     items={[
       {
         value: '#1',
-        label: 'most starred Astro theme',
+        label: 'Top-Rated Moving Services',
         icon: 'tabler:star-filled',
         color: 'text-amber-400',
-        href: 'https://github.com/arthelokyo/astrowind',
+    
       },
-      { value: '100', label: 'Lighthouse score', icon: 'tabler:gauge', color: 'text-emerald-500' },
-      { value: 'MIT', label: 'licensed, free to use', icon: 'tabler:license', color: 'text-sky-500' },
+      { value: '100', label: 'On-Time Safe Delivery', icon: 'tabler:gauge', color: 'text-emerald-500' },
+      {  label: 'Fully Licensed & Insured Team', icon: 'tabler:license', color: 'text-sky-500' },
     ]}
   />
 
@@ -106,10 +106,10 @@ const structuredData = [
   <QuickStart
     id="quick-start"
     classes={{ icon: 'bg-green-600 dark:bg-green-700' }}
-    tagline="TL;DR"
+   
     title="One command. That is the whole setup."
     subtitle="For the people who scroll past the features and ask “how do I run it?”. This is how."
-    commands={['npm create astro@latest -- --template arthelokyo/astrowind']}
+   
     items={[
       {
         title: 'Two minutes, one terminal',

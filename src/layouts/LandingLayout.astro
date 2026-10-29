@@ -13,7 +13,7 @@ const { metadata } = Astro.props;
 
 // Landing pages show a reduced header: only the "Landing" dropdown from the
 // main navigation (looked up by label so reordering navigation.ts is safe).
-const landingMenu = headerData?.links?.find((link) => link.text === 'Landing');
+const landingMenu = headerData?.links?.find((link) => link.text === 'Services');
 ---
 
 <PageLayout metadata={metadata}>

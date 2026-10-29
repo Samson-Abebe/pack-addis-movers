@@ -1,0 +1,102 @@
+---
+import Layout from '~/layouts/LandingLayout.astro';
+
+import Hero2 from '~/components/widgets/Hero2.astro';
+
+import StickyCTA from '~/components/widgets/StickyCTA.astro';
+import Timeline from '~/components/widgets/Timeline.astro';
+
+
+
+
+
+
+const destination = 'https://github.com/arthelokyo/astrowind';
+
+const metadata = {
+  title: 'Click-Through Landing Page Example & Guide',
+  description:
+    'A complete click-through landing page built with AstroWind: message match, one destination, preview of what comes next, proof and FAQ, with notes on why each block moves the click. Free Astro template.',
+  openGraph: { type: 'website' },
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- 1. Hero: the promise and the first click to the destination -->
+
+<Hero2
+  tagline="Industrial & Commercial Logistics"
+  title="Heavy Commercial Freight & Warehouse Relocation!"
+  subtitle="Streamline your supply chain and industrial moves with Trustpack and Move. We deliver efficient transport of commercial inventory and heavy goods utilizing large cargo trailers and trucks. From industrial machinery and store inventories to complete warehouse stock transfers, our heavy-duty fleet and experienced logistics supervisors execute seamless, large-scale moves on schedule."
+  image={{
+    src: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    alt: 'Commercial Warehouse Logistics and Cargo Transport',
+    class: 'w-full h-auto object-contain max-h-none',
+  }}
+/>
+
+  
+
+  <!-- 2. What the page is for -->
+
+
+  <!-- 3. What to put on it -->
+
+
+  <!-- 4. The journey the visitor takes -->
+
+
+  <!-- 5. Rules of thumb -->
+
+  <Timeline
+    id="roadmap"
+ tagline="Warehouse Workflow"
+title="Large-Capacity Moving for Heavy Commercial Goods"
+subtitle="Engineered to move high volumes of merchandise and heavy machinery with minimal operational downtime."
+items={[
+  {
+    date: 'Step 1',
+    title: 'Volume Assessment & Fleet Dispatch',
+    description:
+      'Our logistics coordinators analyze tonnage, pallet counts, and dimensions to deploy the exact combination of heavy cargo trucks and trailers needed.',
+    icon: 'tabler:truck-loading',
+    highlight: true,
+  },
+  {
+    date: 'Step 2',
+    title: 'Palletizing & Industrial Packaging',
+    description:
+      'Goods are organized, palletized, shrink-wrapped, and strapped using high-tensile industrial packaging materials for structural integrity.',
+    icon: 'tabler:packages',
+  },
+  {
+    date: 'Step 3',
+    title: 'Heavy Truck Load & Long-Haul Transit',
+    description:
+      'We utilize specialized loading equipment and large cargo trailers for direct, safe transit of commercial inventory and bulk goods.',
+    icon: 'tabler:engine',
+  },
+  {
+    date: 'Step 4',
+    title: 'Offloading & Storage/Rack Placement',
+    description:
+      'Our team offloads inventory at the destination facility, staging items directly onto warehouse racks or commercial floor layouts.',
+    icon: 'tabler:building-warehouse',
+  },
+]}
+  
+
+    >
+      <Fragment slot="bg">
+      <div
+        class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%)]"
+      >
+      </div>
+    </Fragment>
+</Timeline>
+
+
+  <!-- On phones the hero button is long gone; the bar brings the click back once the reader scrolls -->
+
+  <StickyCTA text="Get the template" href={destination} target="_blank" label="One destination, three placements" />
+</Layout>

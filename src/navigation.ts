@@ -4,7 +4,9 @@ export const headerData = {
   links: [
     {
       text: 'Homes',
+     
       links: [
+
         {
           text: 'SaaS',
           href: getPermalink('/homes/saas'),
@@ -54,34 +56,43 @@ export const headerData = {
           text: 'Privacy policy',
           href: getPermalink('/privacy'),
         },
+        {
+          text: 'Trust',
+          href: getPermalink('/Trust'),
+        },
       ],
     },
     {
-      text: 'Landing',
+      text: 'Services',
       links: [
         {
-          text: 'Lead Generation',
-          href: getPermalink('/landing/lead-generation'),
+          text: 'Corporate & Office Relocation',
+          href: getPermalink('/Services/Corporate & Office Relocation'),
         },
         {
-          text: 'Long-form Sales',
-          href: getPermalink('/landing/sales'),
+          text: 'Full Residential Moving',
+          href: getPermalink('/Services/Full Residential Moving'),
         },
         {
-          text: 'Click-Through',
-          href: getPermalink('/landing/click-through'),
+          text: 'Electronics & TV Mounting/Packing',
+          href: getPermalink('/Services/Electronics & Smart TV Care'),
+        },
+     
+        {
+          text: 'Embassies & Diplomatic Institutions Moving',
+          href: getPermalink('/Services/Embassies & Diplomatic Institutions Moving'),
         },
         {
-          text: 'Product Details (or Services)',
-          href: getPermalink('/landing/product'),
+          text: 'Commercial & Warehouse Moving',
+          href: getPermalink('/Services/Commercial & Warehouse Moving'),
         },
         {
-          text: 'Coming Soon or Pre-Launch',
-          href: getPermalink('/landing/pre-launch'),
+          text: 'Local & Regional City Transportation',
+          href: getPermalink('/Services/Local & Regional City Transportation'),
         },
-        {
-          text: 'Subscription',
-          href: getPermalink('/landing/subscription'),
+         {
+          text: 'Specialized Item Handling',
+          href: getPermalink('/Services/Specialized Item Handling'),
         },
       ],
     },
@@ -111,7 +122,7 @@ export const headerData = {
       ],
     },
   ],
-  actions: [{ text: 'Download', href: 'https://github.com/arthelokyo/astrowind', target: '_blank' }],
+  actions: [{ text: 'Contact us', href: getPermalink('/contact'), target: '_blank' }],
 };
 
 export const footerData = {

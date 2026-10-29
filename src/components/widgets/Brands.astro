@@ -1,8 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
 import type { Brands as Props } from '~/types';
-
-import Image from '~/components/common/Image.astro';
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 
@@ -21,19 +19,18 @@ const {
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
 
-// `grayscale` renders the logos monochrome (white on dark) and reveals their
-// colours on hover; `boxed` keeps the light card behind each logo (the
-// original look). The marquee duplicates the row so the loop is seamless and
-// stops for people who prefer reduced motion.
+// Smooth transition with blue hover effects on link interaction
 const logoClass = [
-  'max-h-12 transition',
-  grayscale
-    ? 'grayscale opacity-70 hover:grayscale-0 hover:opacity-100 dark:brightness-0 dark:invert dark:hover:brightness-100 dark:hover:invert-0'
-    : '',
+  'h-10 w-10 transition-all duration-300 transform group-hover:scale-110 group-hover:text-blue-600 dark:group-hover:text-blue-400',
+  grayscale ? 'grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100' : '',
 ].join(' ');
-const boxClass = boxed ? 'py-1 px-3 rounded-md bg-white/90 dark:bg-gray-200' : 'py-1 px-3';
+
+const boxClass = boxed
+  ? 'py-3 px-5 rounded-xl bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-slate-200/60 dark:border-slate-700/60 shadow-sm hover:shadow-md hover:border-blue-500/50 hover:bg-blue-50/50 dark:hover:bg-slate-800 transition-all'
+  : 'p-3 rounded-lg transition-transform hover:bg-blue-50 dark:hover:bg-slate-800';
+
 const isMarquee = variant === 'marquee';
-const duration = `${Math.max(20, (icons.length + images.length) * 4)}s`;
+const duration = `${Math.max(25, (icons.length + images.length) * 5)}s`;
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
@@ -41,9 +38,10 @@ const duration = `${Math.max(20, (icons.length + images.length) * 4)}s`;
 
   <div
     class:list={[
+      'relative my-6',
       isMarquee
         ? 'aw-marquee overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]'
-        : 'flex flex-wrap justify-center gap-x-6 sm:gap-x-12 lg:gap-x-24',
+        : 'flex flex-wrap justify-center items-center gap-8 sm:gap-12',
     ]}
     style={isMarquee ? `--aw-marquee-duration: ${duration}` : undefined}
   >
@@ -51,14 +49,38 @@ const duration = `${Math.max(20, (icons.length + images.length) * 4)}s`;
       [0, ...(isMarquee ? [1] : [])].map((copy) => (
         <div
           class:list={[
-            isMarquee ? 'aw-marquee-track flex shrink-0 items-center gap-x-12 lg:gap-x-20 pr-12 lg:pr-20' : 'contents',
+            isMarquee ? 'aw-marquee-track flex shrink-0 items-center gap-10 lg:gap-14 pr-10 lg:pr-14' : 'contents',
           ]}
           aria-hidden={copy === 1 ? 'true' : undefined}
         >
+          {/* Icon Array Support */}
           {icons &&
-            icons.map((icon) => (
-              <Icon name={icon} class:list={['py-3 lg:py-5 w-12 h-auto mx-auto sm:mx-0 text-gray-500', logoClass]} />
-            ))}
+            icons.map((item) => {
+              const iconName = typeof item === 'string' ? item : item.name;
+              const iconHref = typeof item === 'object' && item !== null ? item.href : undefined;
+
+              const iconElement = (
+                <Icon name={iconName} class:list={['text-gray-600 dark:text-gray-300', logoClass]} />
+              );
+
+              return iconHref ? (
+                <a
+                  href={iconHref}
+                  class:list={['group flex items-center justify-center', boxClass]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tabindex={copy === 1 ? -1 : undefined}
+                >
+                  {iconElement}
+                </a>
+              ) : (
+                <div class:list={['group flex items-center justify-center', boxClass]}>
+                  {iconElement}
+                </div>
+              );
+            })}
+
+          {/* Image Array Support */}
           {images &&
             images.map(
               (image) =>
@@ -66,29 +88,25 @@ const duration = `${Math.max(20, (icons.length + images.length) * 4)}s`;
                 (image.href ? (
                   <a
                     href={image.href}
-                    class:list={['flex justify-center my-2 lg:my-4', boxClass]}
+                    class:list={['group flex items-center justify-center my-2', boxClass]}
                     target="_blank"
                     rel="noopener noreferrer"
                     tabindex={copy === 1 ? -1 : undefined}
                   >
-                    <Image
+                    <img
                       src={image.src}
-                      alt={image.alt || ''}
-                      class={logoClass}
-                      width={120}
-                      height={48}
-                      format="webp"
+                      alt={image.alt || 'Social icon'}
+                      class="h-10 w-auto max-w-[100px] object-contain transition-all duration-300 transform group-hover:scale-110"
+                      loading="lazy"
                     />
                   </a>
                 ) : (
-                  <div class:list={['flex justify-center my-2 lg:my-4', boxClass]}>
-                    <Image
+                  <div class:list={['group flex items-center justify-center my-2', boxClass]}>
+                    <img
                       src={image.src}
-                      alt={image.alt || ''}
-                      class={logoClass}
-                      width={120}
-                      height={48}
-                      format="webp"
+                      alt={image.alt || 'Social icon'}
+                      class="h-10 w-auto max-w-[100px] object-contain transition-all duration-300 transform group-hover:scale-110"
+                      loading="lazy"
                     />
                   </div>
                 ))
@@ -110,7 +128,10 @@ const duration = `${Math.max(20, (icons.length + images.length) * 4)}s`;
     animation-play-state: paused;
   }
   @keyframes aw-marquee {
-    to {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
       transform: translateX(-100%);
     }
   }

@@ -1,0 +1,102 @@
+---
+import Layout from '~/layouts/LandingLayout.astro';
+
+import Hero2 from '~/components/widgets/Hero2.astro';
+
+import StickyCTA from '~/components/widgets/StickyCTA.astro';
+import Timeline from '~/components/widgets/Timeline.astro';
+
+
+
+
+
+
+const destination = 'https://github.com/arthelokyo/astrowind';
+
+const metadata = {
+  title: 'Click-Through Landing Page Example & Guide',
+  description:
+    'A complete click-through landing page built with AstroWind: message match, one destination, preview of what comes next, proof and FAQ, with notes on why each block moves the click. Free Astro template.',
+  openGraph: { type: 'website' },
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- 1. Hero: the promise and the first click to the destination -->
+
+<Hero2
+  tagline="Corporate Moving Solutions"
+  title="Seamless & Secure Office Relocation Services!"
+  subtitle="Minimize downtime and secure your business assets with Trustpack and Move. We provide professional handling of office desks, chairs, files, IT systems, and delicate electronic equipment across Addis Ababa and beyond. From complete dismantling and custom protective packing to safe transport, prompt reassembly, and setup in your new office (as demonstrated with our work for Trade Link PLC), our expert team takes 100% responsibility for a smooth corporate transition."
+  image={{
+    src: '~/assets/images/home_m.png',
+    alt: 'Trustpack Office Relocation Services',
+ 
+  }}
+/>
+
+  
+
+  <!-- 2. What the page is for -->
+
+
+  <!-- 3. What to put on it -->
+
+
+  <!-- 4. The journey the visitor takes -->
+
+
+  <!-- 5. Rules of thumb -->
+
+  <Timeline
+    id="roadmap"
+  tagline="Corporate Process"
+title="From Initial Consultation to Your Fully Setup Office"
+subtitle="Our structured commercial moving workflow ensures zero business disruption and maximum security for your office equipment."
+items={[
+  {
+    date: 'Step 1',
+    title: 'Site Survey & Custom Estimate',
+    description:
+      'Our supervisor conducts an on-site evaluation or reviews your office layout photos/videos via WhatsApp or Telegram to provide an accurate, transparent cost estimate.',
+    icon: 'tabler:clipboard-check',
+    highlight: true,
+  },
+  {
+    date: 'Step 2',
+    title: 'Professional Packing & Tagging',
+    description:
+      'We supply high-grade cardboard, plastic, and bubble wrap for professional handling of office desks, chairs, files, and electronic equipment with individual labeling.',
+    icon: 'tabler:box',
+  },
+  {
+    date: 'Step 3',
+    title: 'Secure Loading & Transit',
+    description:
+      'Using large cargo trucks and trailers, we ensure high-confidentiality, safe transit for confidential files and heavy commercial furniture across local and regional destinations.',
+    icon: 'tabler:truck-delivery',
+  },
+  {
+    date: 'Step 4',
+    title: 'Dismantling, Reassembly & Setup',
+    description:
+      'We complete the full process—carefully unpacking, reassembling, and arranging office workstations, conference tables, and equipment so your team can resume work immediately.',
+    icon: 'tabler:building-community',
+  },
+]}
+  
+
+    >
+      <Fragment slot="bg">
+      <div
+        class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%)]"
+      >
+      </div>
+    </Fragment>
+</Timeline>
+
+
+  <!-- On phones the hero button is long gone; the bar brings the click back once the reader scrolls -->
+
+  <StickyCTA text="Get the template" href={destination} target="_blank" label="One destination, three placements" />
+</Layout>

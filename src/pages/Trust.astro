@@ -1,0 +1,184 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+
+import Features2 from '~/components/widgets/Features2.astro';
+
+import FeatureTabs from '~/components/widgets/FeatureTabs.astro';
+import Gallery from '~/components/widgets/Gallery.astro';
+
+
+// A product details landing page presents one product at three depths: what it
+// is, what it does, and exactly what you get. The product here is real (this
+// template), so the page is both a working example and a guide: each section is
+// one a product page needs, and says why. Replace the product; keep the depths.
+
+
+
+const metadata = {
+  title: 'Product Details Landing Page Example & Guide',
+  description:
+    'A complete product details landing page built with AstroWind: overview, key features, specifications, getting started, price and availability, proof and FAQ, with notes on why each block belongs. Free Astro template.',
+  openGraph: { type: 'website' },
+};
+
+
+---
+
+<Layout metadata={metadata}>
+  <!-- 1. Hero: one product, one line, one action -->
+
+  <Hero
+    tagline="💬 What Our Customers Say ⭐"
+    title="Real stories from families and businesses who trust us!"
+    subtitle="Every successful move, happy customer, and positive review is proof of our commitment. Explore our customer experiences and see why people trust us to move their belongings safely and on time."
+ 
+    image={{
+      src: 'https://images.unsplash.com/photo-1473188588951-666fce8e7c68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2174&q=80',
+      alt: 'A spotlight on a product. Product Details Landing Page Demo',
+    }}
+  />
+
+
+
+  <!-- 2. Overview: the first depth -->
+
+
+
+  <!-- 3. Key features: the second depth -->
+
+  <FeatureTabs
+    id="features"
+  
+    title="Real Moves, Real Stories — See Why Families Trust Us"
+    subtitle="Pick a moving category below to watch real video highlights and feedback from customers who booked their relocation with TrustPack & Mover."
+    items={[
+      {
+        title: 'Elias Wesenyeleh',
+        description:
+          '“You did an amazing job! Your speed and the care you took with my packages truly impressed me. I’m very happy with your service and would gladly trust you with my belongings again.”',
+        icon: 'tabler:components',
+         
+        videoSrc: 'https://www.tiktok.com/player/v1/7546902688492031237?embed_from=webapp_share&music_info=1&description=1&autoplay=0&muted=0',
+      },
+      {
+        title: 'Joseph JO JO',
+        description:
+          '“TrustPack made my work easier! Thank you, team, for your excellent service. I highly recommend them!”',
+           icon: 'tabler:components',
+        
+        videoSrc: 'https://www.tiktok.com/player/v1/7544301347596799238?embed_from=webapp_share&music_info=1&description=1&autoplay=0&muted=0',
+      },
+      {
+        title: 'Heaven hevu',
+        description:
+          '“Moving while pregnant was stressful, but TrustPack made everything easy and worry-free with their excellent service and care. Thank you, TrustPack team!”',
+         icon: 'tabler:components',
+        videoSrc: 'https://www.tiktok.com/player/v1/7542436202205482296?embed_from=webapp_share&music_info=1&description=1&autoplay=0&muted=0',
+      },
+      {
+        title: 'Yohanis Teshome',
+        description:
+          '“TrustPack made our move smooth and stress-free! Their team handled every item with care and delivered everything safely and on time. Highly recommended!”',
+         icon: 'tabler:components',
+        videoSrc: 'https://www.tiktok.com/player/v1/7559308135010290956?embed_from=webapp_share&music_info=1&description=1&autoplay=0&muted=0',
+      },
+    ]}
+  >
+  <Fragment slot="bg">
+  <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+</Fragment>
+</FeatureTabs>
+  <!-- 4. Specifications: the third depth -->
+
+  
+  <!-- 5. Gallery: let them look at it from every angle -->
+
+  <Gallery
+    id="gallery"
+    tagline="Gallery"
+    title="Show it from every angle"
+    subtitle="From careful packing and secure loading to safe transportation and final delivery, see how our team handles your belongings with care at every stage of the moving process."
+    images={[
+      {
+        src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        alt: 'Blueprint drawings on a desk',
+        caption: 'Specifications, laid out',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        alt: 'Laptops on a table during a meeting',
+        caption: 'The team working with the template',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        alt: 'A tidy desk with a laptop and notebook',
+        caption: 'Everyday setup',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        alt: 'A team planning on a whiteboard',
+        caption: 'Planning a release',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        alt: 'Sticky notes on a glass wall',
+        caption: 'Roadmap session',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1512361436605-a484bdb34b5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        alt: 'A designer working at a desk',
+        caption: 'Design in progress',
+      },
+    ]}
+  />
+  
+
+  <!-- 6. Getting started: what happens after the decision -->
+
+ 
+  <!-- 6. Rules of thumb -->
+
+  <Features2
+  id="trust"
+  tagline="Why Choose Us"
+  title="Moving You Can Trust"
+  subtitle="We make every move easier with careful packing, reliable transportation, and professional service from start to finish."
+  columns={4}
+  items={[
+    {
+      title: 'Safe Packing & Handling',
+      description: 'We carefully pack, load, and transport your belongings to keep them protected throughout the move.',
+      icon: 'tabler:package',
+    },
+    {
+      title: 'On-Time Delivery',
+      description: 'We value your time and work hard to deliver your belongings safely according to the agreed schedule.',
+      icon: 'tabler:clock-check',
+    },
+    {
+      title: 'Professional Moving Team',
+      description: 'Our dedicated team handles household goods and business equipment with care and attention.',
+      icon: 'tabler:users',
+    },
+    {
+      title: 'Reliable Moving Service',
+      description: 'From planning to delivery, we focus on clear communication, dependable service, and your peace of mind.',
+      icon: 'tabler:shield-check',
+    },
+  ]}
+>
+<Fragment slot="bg">
+  <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+</Fragment>
+  <!-- 7. Price and availability -->
+</Features2>
+  
+
+  <!-- 9. Objections, also exposed as FAQPage structured data -->
+
+
+  <!-- 10. Close -->
+
+</Layout>
