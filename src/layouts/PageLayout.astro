@@ -32,6 +32,10 @@ const { metadata } = Astro.props;
   <main class="flex-1">
     <slot />
   </main>Layout
-  <StickyCTA text="Get the template" href={"#"} target="_blank" label="One destination, three placements" />
+<StickyCTA
+  text="Call Us"
+  href="tel:+251968777773"
+  label="Need help with your move?"
+/>
   {Astro.slots.has('footer') ? <slot name="footer" /> : <Footer {...footerData} />}
 </Layout>
