@@ -1,0 +1,101 @@
+---
+import Layout from '~/layouts/LandingLayout.astro';
+
+import Hero2 from '~/components/widgets/Hero2.astro';
+
+import StickyCTA from '~/components/widgets/StickyCTA.astro';
+import Timeline from '~/components/widgets/Timeline.astro';
+
+
+
+
+
+
+const destination = 'https://github.com/arthelokyo/astrowind';
+
+const metadata = {
+  title: 'Click-Through Landing Page Example & Guide',
+  description:
+    'A complete click-through landing page built with AstroWind: message match, one destination, preview of what comes next, proof and FAQ, with notes on why each block moves the click. Free Astro template.',
+  openGraph: { type: 'website' },
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- 1. Hero: the promise and the first click to the destination -->
+
+<Hero2
+  tagline="Secure Temporary & Long-Term Storage"
+  title="Safe & Monitored Storage Facility Services!"
+  subtitle="Keep your valuable possessions safe during lease transitions with Trustpack and Move. We offer safe, secure short-term or long-term storage in our facility until your new home or office is ready. Our trusted warehouse features clean environments, constant security oversight, and dedicated inventory logging to guarantee your belongings remain pristine."
+  image={{
+    src: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    alt: 'Safe Secure Storage Facility for Home or Office Belongings',
+    class: 'w-full h-auto object-contain max-h-none',
+  }}
+/>
+
+  
+
+  <!-- 2. What the page is for -->
+
+
+  <!-- 3. What to put on it -->
+
+
+  <!-- 4. The journey the visitor takes -->
+
+
+  <!-- 5. Rules of thumb -->
+
+  <Timeline
+    id="roadmap"
+ tagline="Storage Workflow"
+title="Seamless Pickup, Secure Warehousing & On-Demand Delivery"
+subtitle="A flexible storage solution engineered to keep your goods safe for any duration."
+items={[
+  {
+    date: 'Step 1',
+    title: 'Inventory Audit & Pickup',
+    description:
+      'We wrap and tag all items at your current location, creating an itemized catalog before loading them for storage transport.',
+    icon: 'tabler:clipboard-list',
+    highlight: true,
+  },
+  {
+    date: 'Step 2',
+    title: 'Warehouse Staging & Protection',
+    description:
+      'Belongings are placed into designated, safe, secure short-term or long-term storage compartments in our warehouse.',
+    icon: 'tabler:building-warehouse',
+  },
+  {
+    date: 'Step 3',
+    title: '24/7 Facility Protection',
+    description:
+      'Your goods remain safely stored under ongoing security monitoring until your new home or office is completely ready.',
+    icon: 'tabler:shield-lock',
+  },
+  {
+    date: 'Step 4',
+    title: 'Scheduled Delivery & Final Setup',
+    description:
+      'Whenever you give the word, we dispatch our fleet to deliver, unpack, and arrange your stored items at your new address.',
+    icon: 'tabler:truck-delivery',
+  },
+]}
+
+    >
+      <Fragment slot="bg">
+      <div
+        class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%)]"
+      >
+      </div>
+    </Fragment>
+</Timeline>
+
+
+  <!-- On phones the hero button is long gone; the bar brings the click back once the reader scrolls -->
+
+  <StickyCTA text="Get the template" href={destination} target="_blank" label="One destination, three placements" />
+</Layout>

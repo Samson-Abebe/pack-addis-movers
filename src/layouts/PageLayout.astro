@@ -3,6 +3,7 @@ import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 import Announcement from '~/components/widgets/Announcement.astro';
+import StickyCTA from '~/components/widgets/StickyCTA.astro';
 
 import { headerData, footerData } from '~/navigation';
 
@@ -26,10 +27,11 @@ const { metadata } = Astro.props;
     goes missing on that page.
   */
   }
-
+    {Astro.slots.has('announcement') ? <slot name="announcement" /> : <Announcement />}
   {Astro.slots.has('header') ? <slot name="header" /> : <Header {...headerData} isSticky showRssFeed showToggleTheme />}
   <main class="flex-1">
     <slot />
-  </main>
+  </main>Layout
+  <StickyCTA text="Get the template" href={"#"} target="_blank" label="One destination, three placements" />
   {Astro.slots.has('footer') ? <slot name="footer" /> : <Footer {...footerData} />}
 </Layout>

@@ -1,50 +1,113 @@
 ---
-// Thin bar above the header. Everything is a prop so a site can change the
-// message without touching the component; the defaults reproduce the demo.
+import { Icon } from 'astro-icon/components';
+
+// Thin bar above the header for Trustpack and Move.
 export interface Props {
   badge?: string;
   text?: string;
-  href?: string;
-  showStars?: boolean;
+  phone1?: string;
+  phone2?: string;
+  telegram?: string;
+  tiktok?: string;
+  instagram?: string;
 }
 
 const {
-  badge = 'NEW',
-  text = 'Astro v7 is now available! »',
-  href = 'https://astro.build/blog/astro-7/',
-  showStars = true,
+  badge = 'FAST MOVE',
+  text = 'Book your relocation', 
+  phone1 = '+251 909388181',
+  phone2 = '+251 968777773',
+  telegram = 'https://t.me/trustpackandmove',
+  tiktok = 'https://tiktok.com/@trustpackandmove',
+  instagram = 'https://instagram.com/trustpackandmove',
 } = Astro.props;
 ---
 
 <div
-  class="text-sm bg-slate-900 text-slate-300 dark:bg-transparent dark:border-b dark:border-slate-800 dark:text-slate-400 hidden lg:flex gap-1 overflow-hidden px-3 py-2 relative text-ellipsis whitespace-nowrap"
+  class="text-sm bg-slate-900 text-slate-300 dark:bg-transparent dark:border-b dark:border-slate-800 dark:text-slate-400 hidden lg:flex items-center gap-3 overflow-hidden px-4 py-1.5 relative text-ellipsis whitespace-nowrap"
 >
   {
     badge && (
-      <span class="bg-white/20 dark:bg-slate-700 text-slate-100 dark:text-slate-300 font-semibold px-1 py-0.5 text-xs mr-0.5 rtl:mr-0 rtl:ml-0.5 inline-block">
+      <span class="bg-primary/30 text-primary-100 font-semibold px-2 py-0.5 text-xs rounded inline-block">
         {badge}
       </span>
     )
   }
-  {
-    text &&
-      (href ? (
-        <a href={href} class="text-slate-300 hover:underline dark:text-slate-400 font-medium" set:html={text} />
-      ) : (
-        <span class="text-slate-300 dark:text-slate-400 font-medium" set:html={text} />
-      ))
-  }
-  {
-    showStars && (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        class="ltr:ml-auto rtl:mr-auto w-[5.6rem] h-[1.25rem] ml-auto bg-contain bg-right bg-no-repeat inline-block bg-[url(https://img.shields.io/github/stars/arthelokyo/astrowind.svg?style=social&label=Stars&maxAge=86400)]"
-        title="If you like AstroWind, give us a star."
-        href="https://github.com/arthelokyo/astrowind"
-      >
-        <span class="sr-only">GitHub stars</span>
-      </a>
-    )
-  }
+
+  <div class="flex items-center gap-3">
+    {text && <span class="text-slate-300 dark:text-slate-400 font-medium">{text}</span>}
+
+    {
+      phone1 && (
+        <a
+          href={`tel:${phone1.replace(/\s+/g, '')}`}
+          class="inline-flex items-center gap-1 font-semibold text-white hover:text-primary transition"
+        >
+          <Icon name="tabler:phone" class="w-3.5 h-3.5 text-primary" />
+          <span>{phone1}</span>
+        </a>
+      )
+    }
+
+    <span class="text-slate-600">|</span>
+
+    {
+      phone2 && (
+        <a
+          href={`tel:${phone2.replace(/\s+/g, '')}`}
+          class="inline-flex items-center gap-1 font-semibold text-white hover:text-primary transition"
+        >
+          <Icon name="tabler:phone" class="w-3.5 h-3.5 text-primary" />
+          <span>{phone2}</span>
+        </a>
+      )
+    }
+  </div>
+
+  <div class="ltr:ml-auto rtl:mr-auto flex items-center gap-3">
+    {
+      telegram && (
+        <a
+          href={telegram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-slate-400 hover:text-sky-400 transition inline-flex items-center gap-1 text-xs"
+          title="Telegram"
+        >
+          <Icon name="tabler:brand-telegram" class="w-4 h-4" />
+          <span class="hidden xl:inline">Telegram</span>
+        </a>
+      )
+    }
+
+    {
+      tiktok && (
+        <a
+          href={tiktok}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-slate-400 hover:text-pink-400 transition inline-flex items-center gap-1 text-xs"
+          title="TikTok"
+        >
+          <Icon name="tabler:brand-tiktok" class="w-4 h-4" />
+          <span class="hidden xl:inline">TikTok</span>
+        </a>
+      )
+    }
+
+    {
+      instagram && (
+        <a
+          href={instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-slate-400 hover:text-amber-400 transition inline-flex items-center gap-1 text-xs"
+          title="Instagram"
+        >
+          <Icon name="tabler:brand-instagram" class="w-4 h-4" />
+          <span class="hidden xl:inline">Instagram</span>
+        </a>
+      )
+    }
+  </div>
 </div>

@@ -2,21 +2,21 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
-import Note from '~/components/widgets/Note.astro';
+
 import Features from '~/components/widgets/Features.astro';
 import QuickStart from '~/components/widgets/QuickStart.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+
 import Timeline from '~/components/widgets/Timeline.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
 import BlogHighlightedPosts from '~/components/widgets/BlogHighlightedPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
-import Stats from '~/components/widgets/Stats.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
+import Projects from '~/components/widgets/Projects.astro';
 import SocialProof from '~/components/widgets/SocialProof.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
 import { SITE, METADATA, I18N } from 'astrowind:config';
 import favIconSvg from '~/assets/favicons/favicon.svg';
+import Testimonials from '~/components/widgets/Testimonials.astro';
 
 //this is to add the startup on the routing
 
@@ -334,68 +334,87 @@ const structuredData = [
   />
 
   <!-- Features2 Widget ************** -->
+<Projects
+  id="portfolio"
+  title="Proven Track Record in Relocation"
+  subtitle="Explore our successful moving operations across Ethiopia. From corporate headquarters and diplomatic missions to residential villas and fragile art collections, Trustpack and Move delivers flawless results with 100% property protection."
+  items={[
+    {
+      title: 'Corporate & Office Relocation for Trade Link PLC',
+      description:
+        'Carefully unpacking, packing, loading, transporting, and reassembling the entire Trade Link PLC office, including all workstations, executive furniture, and sensitive IT equipment.',
+      image: {
+        src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=928&q=80',
+        alt: 'Trade Link PLC Corporate Office Relocation',
+      },
+      tags: ['Corporate', 'Office', 'Reassembly'],
+      result: 'Zero operational downtime',
+    },
+    {
+      title: 'Full Residential Moving for High-Rise & Villa Homes',
+      description:
+        'Smooth end-to-end relocation of luxury villas, modern apartments, condominiums, and high-rise residences across Addis Ababa with zero damage.',
+      image: {
+        src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=928&q=80',
+        alt: 'Full Residential Moving Services',
+      },
+      tags: ['Residential', 'Villas', 'Apartments'],
+      result: 'Completed in under 4 hours',
+    },
+    {
+      title: 'Electronics & TV Mounting/Packing for Luxury Displays',
+      description:
+        'Transporting and safely mounting large smart TVs (65", 75", 100" and above) using custom shockproof protective packaging and precision wall installation.',
+      image: {
+        src: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=928&q=80',
+        alt: 'Large Smart TV Packing and Mounting',
+      },
+      tags: ['Electronics', 'TV Mounting', 'Specialized'],
+      result: '100% screen protection guarantee',
+    },
+    {
+      title: 'Embassies & Diplomatic Institutions Moving',
+      description:
+        'High-security relocation for international embassies and diplomatic missions requiring strict confidentiality, sealed transit, and specialized hand-carried care.',
+      image: {
+        src: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=928&q=80',
+        alt: 'Diplomatic Institutions Relocation',
+      },
+      tags: ['Diplomatic', 'High Security', 'Confidential'],
+      result: 'Full chain-of-custody compliance',
+    },
+    {
+      title: 'Commercial & Warehouse Cargo Moving',
+      description:
+        'Carefully moving bulk commercial items, store inventories, and heavy warehouse goods utilizing our fleet of large cargo trucks and trailers.',
+      image: {
+        src: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=928&q=80',
+        alt: 'Commercial Warehouse Cargo Transport',
+      },
+      tags: ['Commercial', 'Warehouse', 'Heavy Freight'],
+      result: 'On-schedule inventory delivery',
+    },
+    {
+      title: 'Local & Regional Intercity Transportation Services',
+      description:
+        'Safe, long-distance freight transit from Addis Ababa to various regional states and major cities across Ethiopia with full real-time tracking.',
+      image: {
+        src: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=928&q=80',
+        alt: 'Regional Freight Transportation in Ethiopia',
+      },
+      tags: ['Regional Transit', 'Long-Haul', 'Intercity'],
+      result: 'Nationwide coverage',
+    },
 
-  <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS v4"
-    tagline="Components"
-    items={[
-      {
-        title: 'Headers',
-        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
-        icon: 'flat-color-icons:template',
-      },
-      {
-        title: 'Heros',
-        description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
-        icon: 'flat-color-icons:gallery',
-      },
-      {
-        title: 'Features',
-        description:
-          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
-        icon: 'flat-color-icons:approval',
-      },
-      {
-        title: 'Content',
-        description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
-        icon: 'flat-color-icons:document',
-      },
-      {
-        title: 'Call-to-Action',
-        description:
-          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
-        icon: 'flat-color-icons:advertising',
-      },
-      {
-        title: 'Pricing',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
-        icon: 'flat-color-icons:currency-exchange',
-      },
-      {
-        title: 'Testimonial',
-        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
-        icon: 'flat-color-icons:voice-presentation',
-      },
-      {
-        title: 'Contact',
-        description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
-        icon: 'flat-color-icons:business-contact',
-      },
-      {
-        title: 'Footers',
-        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
-        icon: 'flat-color-icons:database',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Features2>
+  ]}
+>
+  <Fragment slot="bg">
+    <div
+      class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%)]"
+    >
+    </div>
+  </Fragment>
+</Projects>
 
   <!-- Timeline Widget **************** -->
 
@@ -462,7 +481,7 @@ const structuredData = [
 
   <!-- Note Widget ******************* -->
 
-  <Note title="Philosophy:" description="Simplicity, Best Practices and High Performance" />
+
 
   <!-- HighlightedPosts Widget ******* -->
 
@@ -520,40 +539,63 @@ const structuredData = [
           'Anywhere that serves static files: Vercel, Netlify, Cloudflare, GitHub Pages, an nginx container (a Dockerfile is included) or your own server. The template is MIT licensed and free for personal and commercial projects.',
       },
     ]}
-  />
+  >
+    <Fragment slot="bg">
+      <div
+        class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%)]"
+      >
+      </div>
+    </Fragment>
+  </FAQs>
 
-  <!-- Stats Widget ****************** -->
+  <!-- Words from real customers ****************** -->
 
-  <Stats
-    id="stats"
-    countUp
-    stats={[
-      { title: 'GitHub stars', amount: '6K' },
-      { title: 'Forks', amount: '1.7K' },
-      { title: 'Ready-made widgets', amount: '34' },
-      { title: 'Lighthouse score', amount: '100' },
+ 
+  <Testimonials
+    title="Words from real customers"
+    testimonials={[
+      {
+        testimonial: `The designs are not only visually appealing but also highly professional. The templates have saved me a significant amount of time while helping me make a lasting impression on my clients.`,
+        rating: 5,
+        name: 'Emily Kennedy',
+        job: 'Front-end developer',
+        image: {
+          src: 'https://images.unsplash.com/photo-1618835962148-cf177563c6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=930&q=80',
+          alt: 'Emily Kennedy Image',
+        },
+      },
+      {
+        testimonial: `It beautifully showcases my work, with its clean and elegant design that lets my photographs shine. Customization was a breeze, even for a non-tech person like me. The result is a professional and immersive portfolio that's garnered numerous compliments.`,
+        rating: 5,
+        name: 'Sarah Hansen',
+        job: 'Photographer',
+        image: {
+          src: 'https://images.unsplash.com/photo-1561406636-b80293969660?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+          alt: 'Sarah Hansen Image',
+        },
+      },
+      {
+        testimonial: `I discovered these templates and I'm impressed by their variety and quality. They've helped me establish a consistent brand image across my marketing and social platforms, elevating my business's overall appearance.`,
+        rating: 5,
+        name: 'Mark Wilkinson',
+        job: 'Small business owner',
+        image: {
+          src: 'https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=824&q=80',
+          alt: 'Mark Wilkinson Image',
+        },
+      },
     ]}
+    callToAction={{
+      target: '_blank',
+      text: 'More testimonials...',
+      href: 'https://github.com/arthelokyo/astrowind',
+      icon: 'tabler:chevron-right',
+    }}
   />
+
 
   <!-- CallToAction Widget *********** -->
 
-  <CallToAction
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/arthelokyo/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-    ]}
-  >
-    <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
-    </Fragment>
 
-    <Fragment slot="subtitle">
-      Free, open source and production-ready. <br class="hidden md:inline" />Clone it, replace the content and deploy.
-    </Fragment>
-  </CallToAction>
+ 
 </Layout>

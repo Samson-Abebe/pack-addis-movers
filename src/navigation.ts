@@ -8,37 +8,18 @@ export const headerData = {
       links: [
 
         {
-          text: 'SaaS',
-          href: getPermalink('/homes/saas'),
+          text: 'Landing',
+          href: getPermalink('/'),
         },
-        {
-          text: 'Startup',
-          href: getPermalink('/homes/startup'),
-        },
-        {
-          text: 'Mobile App',
-          href: getPermalink('/homes/mobile-app'),
-        },
-        {
-          text: 'Personal',
-          href: getPermalink('/homes/personal'),
-        },
+       
       ],
     },
     {
-      text: 'Pages',
-      links: [
+      text: 'Discovery',
+      links: [   
         {
-          text: 'Features (Anchor Link)',
-          href: getPermalink('/#features'),
-        },
-        {
-          text: 'Services',
-          href: getPermalink('/services'),
-        },
-        {
-          text: 'Pricing',
-          href: getPermalink('/pricing'),
+          text: 'Trust',
+          href: getPermalink('/Trust'),
         },
         {
           text: 'About us',
@@ -47,53 +28,38 @@ export const headerData = {
         {
           text: 'Contact',
           href: getPermalink('/contact'),
-        },
-        {
-          text: 'Terms',
-          href: getPermalink('/terms'),
-        },
-        {
-          text: 'Privacy policy',
-          href: getPermalink('/privacy'),
-        },
-        {
-          text: 'Trust',
-          href: getPermalink('/Trust'),
-        },
+        }, 
       ],
     },
     {
       text: 'Services',
       links: [
         {
-          text: 'Corporate & Office Relocation',
-          href: getPermalink('/Services/Corporate & Office Relocation'),
+          text: 'Home Mover',
+          href: getPermalink('/Services/Home Mover'),
         },
         {
-          text: 'Full Residential Moving',
-          href: getPermalink('/Services/Full Residential Moving'),
+          text: 'Office Relocation',
+          href: getPermalink('/Services/Office Relocation'),
         },
         {
-          text: 'Electronics & TV Mounting/Packing',
-          href: getPermalink('/Services/Electronics & Smart TV Care'),
+          text: 'Packing & Unpacking',
+          href: getPermalink('/Services/Packing & Unpacking'),
         },
      
         {
-          text: 'Embassies & Diplomatic Institutions Moving',
-          href: getPermalink('/Services/Embassies & Diplomatic Institutions Moving'),
+          text: 'Dismantling & Reassembly',
+          href: getPermalink('/Services/Dismantling & Reassembly'),
         },
         {
-          text: 'Commercial & Warehouse Moving',
-          href: getPermalink('/Services/Commercial & Warehouse Moving'),
+          text: 'Storage Service',
+          href: getPermalink('/Services/Storage Service'),
         },
         {
-          text: 'Local & Regional City Transportation',
-          href: getPermalink('/Services/Local & Regional City Transportation'),
+          text: 'Cleaning Service',
+          href: getPermalink('/Services/Cleaning Service'),
         },
-         {
-          text: 'Specialized Item Handling',
-          href: getPermalink('/Services/Specialized Item Handling'),
-        },
+     
       ],
     },
     {
@@ -125,55 +91,56 @@ export const headerData = {
   actions: [{ text: 'Contact us', href: getPermalink('/contact'), target: '_blank' }],
 };
 
+
 export const footerData = {
   links: [
     {
-      title: 'Product',
+      title: 'Services',
       links: [
-        { text: 'Features', href: getPermalink('/#features') },
-        { text: 'Pricing', href: getPermalink('/pricing') },
-        { text: 'Services', href: getPermalink('/services') },
-        { text: 'Blog', href: getBlogPermalink() },
+        { text: 'Residential Relocation' },
+        { text: 'Office Relocation' },
+        { text: 'Packing & Unpacking' },
+        { text: 'TV Mounting & Electronics' },
       ],
     },
     {
-      title: 'Demos',
+      title: 'Specialized',
       links: [
-        { text: 'SaaS', href: getPermalink('/homes/saas') },
-        { text: 'Startup', href: getPermalink('/homes/startup') },
-        { text: 'Mobile App', href: getPermalink('/homes/mobile-app') },
-        { text: 'Personal', href: getPermalink('/homes/personal') },
-        { text: 'Landing pages', href: getPermalink('/landing/lead-generation') },
+        { text: 'Diplomatic Institutions' },
+        { text: 'Warehouse & Cargo Freight' },
+        { text: 'Glass & Fragile Care' },
+        { text: 'Dismantling & Reassembly' },
       ],
     },
     {
-      title: 'Resources',
+      title: 'Solutions',
       links: [
-        { text: 'Documentation', href: 'https://github.com/arthelokyo/astrowind#readme' },
-        { text: 'Skills for AI agents', href: 'https://github.com/arthelokyo/astrowind/tree/main/.agents/skills' },
-        { text: 'Releases', href: 'https://github.com/arthelokyo/astrowind/releases' },
-        { text: 'Discussions', href: 'https://github.com/arthelokyo/astrowind/discussions' },
+        { text: '100% Responsibility' },
+        { text: '4-Hour Fast Turnaround' },
+        { text: 'Short & Long-Term Storage' },
+        { text: 'Pre & Post-Move Cleaning' },
       ],
     },
     {
-      title: 'Company',
+      title: 'Coverage',
       links: [
-        { text: 'About', href: getPermalink('/about') },
-        { text: 'Contact', href: getPermalink('/contact') },
-        { text: 'Report an issue', href: 'https://github.com/arthelokyo/astrowind/issues' },
-        { text: 'License', href: 'https://github.com/arthelokyo/astrowind/blob/main/LICENSE.md' },
+        { text: 'Addis Ababa Sub-cities' },
+        { text: 'Condominium & High-Rise' },
+        { text: 'Villas & Apartments' },
+        { text: 'Regional State Transit' },
       ],
     },
   ],
   secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: 'Terms' },
+    { text: 'Privacy' },
   ],
   socialLinks: [
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/arthelokyo/astrowind' },
+    { ariaLabel: 'Telegram', icon: 'tabler:brand-telegram', href: 'https://t.me/trustpackandmove' },
+    { ariaLabel: 'WhatsApp', icon: 'tabler:brand-whatsapp', href: 'https://wa.me/251900000000' },
+    { ariaLabel: 'Phone', icon: 'tabler:phone', href: 'tel:+251900000000' },
   ],
   footNote: `
-    Made by <a class="text-blue-600 underline dark:text-muted" href="https://arthelokyo.com"> Arthelokyo</a> · All rights reserved.
+    © ${new Date().getFullYear()} <span class="font-semibold text-primary">Trustpack and Move</span>. All rights reserved.
   `,
 };

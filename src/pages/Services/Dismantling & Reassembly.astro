@@ -24,14 +24,13 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- 1. Hero: the promise and the first click to the destination -->
 
-
 <Hero2
-  tagline="Full Residential Moving"
-  title="Smooth & Damage-Free Moving for Any Residence!"
-  subtitle="Relocate effortlessly across Addis Ababa and beyond with Trustpack and Move. We deliver smooth relocation of villas, apartments, condominiums, and high-rise buildings with zero damage guaranteed. Our expert team takes 100% responsibility for your home assets—handling everything from high-altitude balcony and elevator logistics to premium protective packing, safe transport, careful unpacking, and complete furniture setup in as little as 4 hours."
+  tagline="Furniture & Appliance Assembly"
+  title="Expert Dismantling & Reassembly Services!"
+  subtitle="Take the complexity out of large furniture and electronics with Trustpack and Move. We provide expert dismantling and setup of TVs, beds, wardrobes, and office furniture. Our skilled technicians ensure hardware is carefully unmounted, transported safely without missing screws or components, and precisely reassembled or wall-mounted at your new location."
   image={{
-    src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-    alt: 'Modern Residential Apartment Building and Relocation',
+    src: 'https://images.unsplash.com/photo-1581539250439-c96689b516dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    alt: 'Expert Dismantling and Setup of Furniture and TVs',
     class: 'w-full h-auto object-contain max-h-none',
   }}
 />
@@ -51,40 +50,42 @@ const metadata = {
 
   <Timeline
     id="roadmap"
-tagline="Residential Process"
-title="Seamless Relocation for Villas, Apartments & Condos"
-subtitle="Our structured moving methodology guarantees complete safety and zero damage, no matter the building type or floor height."
+ tagline="Assembly Workflow"
+title="Precision Unmounting, Hardware Care & Rebuilding"
+subtitle="Ensuring complex furniture and wall-mounted electronics are reconstructed perfectly."
 items={[
   {
     date: 'Step 1',
-    title: 'Pre-Move Survey & Floor Assessment',
+    title: 'Component Inspection & Unmounting',
     description:
-      'We review your building layout, floor levels, stairwells, and elevator access via photos, videos, or an on-site visit to plan a safe, seamless move.',
-    icon: 'tabler:building-skyscraper',
+      'We inspect structural joints, safely unmount large smart TVs, and organize hardware fasteners into protective bags.',
+    icon: 'tabler:tools',
     highlight: true,
   },
   {
     date: 'Step 2',
-    title: 'Multi-Layer Protective Packing',
+    title: 'Careful Dismantling',
     description:
-      'Every piece of furniture and fragile item is wrapped in custom cardboard, plastic film, and high-density bubble wrap to prevent scratch or impact damage.',
-    icon: 'tabler:box-margin',
+      'Our carpenters perform expert dismantling of beds, wardrobes, executive desks, and wall units without scratching wood or metal.',
+    icon: 'tabler:armchair-off',
   },
   {
     date: 'Step 3',
-    title: 'Safe Transit & Floor Navigation',
+    title: 'Flat-Pack Protective Transport',
     description:
-      'We safely transport items from villas, apartments, condominiums, and high-rise buildings using specialized equipment and secure transit vehicles.',
+      'Dismantled panels and screen units are padded in bubble wrap and corner guards for flat, stable transit.',
     icon: 'tabler:truck-loading',
   },
   {
     date: 'Step 4',
-    title: 'Unpacking, Reassembly & Zero-Damage Setup',
+    title: 'Expert Reassembly & Mounting',
     description:
-      'Our experts carefully unpack, reassemble beds and wardrobes, mount large TVs, and arrange your home to ensure 100% satisfaction with zero damage.',
-    icon: 'tabler:home-check',
+      'At the destination, we complete full setup of TVs, beds, wardrobes, and office furniture so they are ready for immediate use.',
+    icon: 'tabler:armchair',
   },
+
 ]}
+
     >
       <Fragment slot="bg">
       <div
