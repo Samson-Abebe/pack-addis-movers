@@ -13,10 +13,11 @@ import BlogHighlightedPosts from '~/components/widgets/BlogHighlightedPosts.astr
 import FAQs from '~/components/widgets/FAQs.astro';
 import Projects from '~/components/widgets/Projects.astro';
 import SocialProof from '~/components/widgets/SocialProof.astro';
-import StructuredData from '~/components/common/StructuredData.astro';
+
 import { SITE, METADATA, I18N } from 'astrowind:config';
 import favIconSvg from '~/assets/favicons/favicon.svg';
 import Testimonials from '~/components/widgets/Testimonials.astro';
+import { getPermalink} from '~/utils/permalinks';
 
 //this is to add the startup on the routing
 
@@ -54,32 +55,33 @@ const structuredData = [
 ---
 
 <Layout metadata={metadata}>
-  <StructuredData slot="head" schema={structuredData} />
+  
   <!-- Hero Widget ******************* -->
-
-  <Hero
-    tagline="Free & open source"
- 
+<Hero
+    tagline="Ethiopia's Trusted Moving & Logistics Partner"
+    actions={[
+      {
+        variant: 'primary',
+       text: 'Get Started',
+        href: 'tel:0968777773',
+        icon: 'tabler:phone-call',
+      },
+      {
+        text: 'Explore Services',
+        href: getPermalink('/#services'),
+      },
+    ]}
   >
-    <Fragment slot="image">
-      <video class="mx-auto w-full rounded-md" autoplay muted loop playsinline controls>
-        <source src="/videos/hero.mp4" type="video/mp4" />
-        Your browser does not support video.
-      </video>
-    </Fragment>
-
     <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating websites with</span>
-      <span class="text-accent dark:text-white"> Astro v7</span> + Tailwind CSS
+      When you choose <span class="text-accent dark:text-white">Trustpack Mover</span>, you save time and money.
     </Fragment>
 
     <Fragment slot="subtitle">
       <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro v7 +
-        Tailwind CSS v4.</span
+        Experience seamless residential and corporate relocations with end-to-end packing, safe transport, and professional setup in as little as 4 hours.</span
       >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
-      Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages & Blogs.
+      <span class="block mb-1 sm:hidden font-bold text-blue-600">Trustpack & Move: Fast, Safe, Reliable.</span>
+      100% full responsibility for your belongings — from packing and loading to reassembly and installation across Addis Ababa and nationwide.
     </Fragment>
   </Hero>
 
@@ -102,32 +104,29 @@ const structuredData = [
   />
 
   <!-- QuickStart Widget ************* -->
-
-  <QuickStart
+<QuickStart
     id="quick-start"
     classes={{ icon: 'bg-green-600 dark:bg-green-700' }}
-   
-    title="One command. That is the whole setup."
-    subtitle="For the people who scroll past the features and ask “how do I run it?”. This is how."
-   
+    title="How to Book Your Move in 3 Easy Steps"
+    subtitle="Fast, transparent, and completely hassle-free. Here is how simple it is to get started with Trustpack Mover."
     items={[
       {
-        title: 'Two minutes, one terminal',
+        title: '1. Send Us Your Items',
         description:
-          'Answer the prompts, run <code>npm run dev</code>, open localhost:4321. The demo site is now yours to edit. The only requirement is a current Node.js.',
-        icon: 'tabler:terminal-2',
+          'Send photos or videos of the items you need moved along with your locations via <strong>Telegram or WhatsApp</strong> to 0968777773 / 0909388181.',
+        icon: 'tabler:camera',
       },
       {
-        title: 'AI-ready out of the box',
+        title: '2. Get a Fast, Transparent Quote',
         description:
-          'An <code>AGENTS.md</code> and step-by-step skills tell Claude Code, Cursor or any coding assistant how this template works. Ask it for a page; it knows where things go.',
-        icon: 'tabler:sparkles',
+          'Our pricing call center team evaluates your details instantly, or a supervisor conducts an on-site survey for complex corporate and residential moves.',
+        icon: 'tabler:calculator',
       },
       {
-        title: 'Free, MIT licensed, no strings',
+        title: '3. We Pack, Move & Reassemble',
         description:
-          'Use it for client work, side projects or the company site. Star the repo if it saves you an afternoon.',
-        icon: 'tabler:license',
+          'Our professional team arrives with all packing materials (boxes, bubble wrap, plastic), loads securely, and handles complete reassembly in hours.',
+        icon: 'tabler:truck-delivery',
       },
     ]}
   >
@@ -143,187 +142,313 @@ const structuredData = [
 
   <Features
     id="features"
-    tagline="Features"
-    title="What you get with AstroWind"
-    subtitle="One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022, 2023, 2024 and 2025."
-    items={[
-      {
-        title: 'Astro + Tailwind CSS Integration',
-        description:
-          'A seamless integration between two great frameworks that offer high productivity, performance and versatility. Now powered by Tailwind CSS v4.',
-        icon: 'tabler:brand-tailwind',
-      },
-      {
-        title: 'Ready-to-use Components',
-        description:
-          'Widgets made with Tailwind CSS v4 ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
-        icon: 'tabler:components',
-      },
-      {
-        title: 'Best Practices',
-        description:
-          'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
-        icon: 'tabler:list-check',
-      },
-      {
-        title: 'Excellent Page Speed',
-        description:
-          'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
-        icon: 'tabler:rocket',
-      },
-      {
-        title: 'Search Engine Optimization (SEO)',
-        description:
-          "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
-        icon: 'tabler:arrows-right-left',
-      },
-      {
-        title: 'Open to new ideas and contributions',
-        description:
-          'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
-        icon: 'tabler:bulb',
-      },
-    ]}
+    tagline="Why Choose Us"
+  title="Why Move With Trustpack Mover"
+  subtitle="We combine full accountability, premium protective materials, and complete end-to-end service to give you a stress-free relocation."
+  items={[
+    {
+      title: '100% Property Responsibility',
+      description:
+        'We take full accountability for your property and operate with absolute integrity, ensuring your belongings are completely safe from start to finish.',
+      icon: 'tabler:shield-check',
+    },
+    {
+      title: 'Complete End-to-End Service',
+      description:
+        'From initial unpacking and packing to loading, shipping, reassembly, and repair, we manage every step of the moving journey seamlessly.',
+      icon: 'tabler:truck-loading',
+    },
+    {
+      title: 'In-House Quality Packaging',
+      description:
+        'We supply and prepare top-grade materials ourselves—including durable cardboard boxes, plastic wrap, plaster, and heavy-duty bubble wrap.',
+      icon: 'tabler:box-seam',
+    },
+    {
+      title: 'Utmost Care & Protection',
+      description:
+        'Every single item is wrapped, padded, and handled with meticulous attention to detail to guarantee zero damage during transit.',
+      icon: 'tabler:heart-handshake',
+    },
+    {
+      title: 'Careful Unpacking & Placement',
+      description:
+        'Our team doesn’t stop at delivery; we carefully unpack and return every item to its original designated spot in your new location.',
+      icon: 'tabler:home-check',
+    },
+    {
+      title: 'Trusted Local Expertise',
+      description:
+        'Proven service designed to eliminate the hassles and risks of local moving, providing a dependable standard you can rely on.',
+      icon: 'tabler:award',
+    },
+  ]}
   />
 
   <!-- Content Widget **************** -->
 
+<section class="relative isolate w-full pt-16 pb-8 text-center overflow-hidden">
+
+  <!-- Background -->
+  <div class="absolute inset-0 -z-10 bg-blue-50 dark:bg-transparent"></div>
+
+  <h1 class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+    Core Services We Provide
+  </h1>
+
+  <p class="mt-3 text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto px-4">
+    From complete house moves to office relocations and temporary storage, we handle every detail.
+  </p>
+
+</section>
+  <!-- 1. Home Mover **************** -->
+
   <Content
-    isReversed
-    tagline="Inside template"
-    title="AstroWind's Blueprint: Fun Meets Functionality!"
+    id="services"
+    tagline="Residential Moving"
+    title="Home Mover"
     items={[
       {
-        title: 'Built on top of Astro v7',
-        description:
-          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
+        title: 'Full Household Relocation',
+        description: 'Carefully packing, transporting, and arranging household items for villas, apartments, condominiums, and high-rise buildings.',
+        icon: 'tabler:home',
       },
       {
-        title: 'Styled using Tailwind CSS v4',
-        description:
-          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
+        title: 'Zero-Damage Guarantee',
+        description: 'Meticulous handling to ensure zero scratches or property damage throughout the entire loading and transit process.',
+        icon: 'tabler:shield-check',
       },
       {
-        title: 'Cross-browser compatibility',
-        description:
-          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
+        title: 'Complete Unpacking & Placement',
+        description: 'Unpacking each item in your new space and setting everything up in its designated room for an instant move-in experience.',
+        icon: 'tabler:armchair',
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
+      src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2070&q=80',
+      alt: 'Home Mover Service',
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
-      Gain a competitive advantage by incorporating industry leading practices
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Stress-Free Residential Moving</h3>
+      Your home contents are packed, transported, and arranged with absolute care.
     </Fragment>
-
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
-  <!-- Content Widget **************** -->
-
+  <!-- 2. Office Relocation **************** -->
   <Content
     isAfterContent
-    items={[
-      {
-        title: 'High level of customization',
-        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
-      },
-      {
-        title: 'Multiple layout possibilities',
-        description:
-          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
-      },
-      {
-        title: 'Fully responsive design',
-        description:
-          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
-      },
-      {
-        title: 'Integration of media',
-        description:
-          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1616674282942-2835e62d612e?auto=format&fit=crop&w=1600&q=80',
-      alt: 'Printed website wireframes on a black table',
-    }}
-  >
-    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
     isReversed
-    isAfterContent
+    tagline="Corporate Moving"
+    title="Office Relocation"
     items={[
       {
-        title: 'Enhanced user engagement',
-        description:
-          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
+        title: 'Corporate Furniture Handling',
+        description: 'Safe moving of executive desks, office chairs, conference tables, file cabinets, and heavy workspace equipment.',
+        icon: 'tabler:building-skyscraper',
       },
       {
-        title: 'Continuous improvement',
-        description:
-          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
+        title: 'Confidential & Secure Transport',
+        description: 'Strict handling protocols for sensitive files, diplomatic materials, and high-value corporate documentation.',
+        icon: 'tabler:lock',
       },
       {
-        title: 'Time and resource efficiency',
-        description:
-          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
-      },
-      {
-        title: 'Community support',
-        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
+        title: 'Minimal Business Downtime',
+        description: 'Efficient scheduling designed to execute complete office transitions quickly so your team stays productive.',
+        icon: 'tabler:clock',
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Astronauts Image',
+      src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2070&q=80',
+      alt: 'Office Relocation Service',
     }}
   >
-    <Fragment slot="content">Designed to foster growth and success.</Fragment>
-
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Expert Corporate Shifting</h3>
+      Trusted by corporate offices, commercial facilities, and diplomatic institutions across Ethiopia.
+    </Fragment>
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </Content>
+
+  <!-- 3. Packing & Unpacking **************** -->
+  <Content
+    isAfterContent
+    tagline="Protection & Care"
+    title="Packing & Unpacking"
+    items={[
+      {
+        title: 'Self-Supplied Quality Materials',
+        description: 'We supply high-grade materials including heavy-duty cardboard boxes, plastic wrap, plaster, and bubble wrap.',
+        icon: 'tabler:box-seam',
+      },
+      {
+        title: 'Fragile & Special Item Care',
+        description: 'Specialized multi-layer protective packaging for delicate glassware, ceramics, artworks, and home decorations.',
+        icon: 'tabler:glass-full',
+      },
+      {
+        title: 'Systematic Unpacking',
+        description: 'Carefully unpacking every container and returning items systematically to their original or requested locations.',
+        icon: 'tabler:package-export',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2070&q=80',
+      alt: 'Packing and Unpacking Service',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Professional Materials & Handling</h3>
+      We bring all supplies needed to keep your fragile items completely safe.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- 4. Dismantling & Mantling **************** -->
+  <Content
+    isAfterContent
+    isReversed
+    tagline="Assembly & Setup"
+    title="Dismantling & Mantling"
+    items={[
+      {
+        title: 'Smart TV Mounting & Setup',
+        description: 'Safe unmounting, custom protective packaging, transport, and secure installation for large smart TVs (65” to 100”+).',
+        icon: 'tabler:device-tv',
+      },
+      {
+        title: 'Bedroom Furniture Assembly',
+        description: 'Professional disassembly and complete reassembly of beds, wardrobes, dressers, and custom bed frames.',
+        icon: 'tabler:bed',
+      },
+      {
+        title: 'Office Workstation Reconstruction',
+        description: 'Dismantling modular office cubicles and desks, then reassembling them accurately in your new location.',
+        icon: 'tabler:tools',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1600&q=80',
+      alt: 'Dismantling and Mantling Service',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Setup Ready on Arrival</h3>
+      No need to worry about complex furniture or TV mounting—we handle it all.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- 5. Storage Service **************** -->
+  <Content
+    isAfterContent
+    tagline="Secure Warehousing"
+    title="Storage Service"
+    items={[
+      {
+        title: 'Safe Temporary Warehousing',
+        description: 'Secure, clean, and dedicated storage units to keep your home or office belongings safe while transitioning locations.',
+        icon: 'tabler:building-warehouse',
+      },
+      {
+        title: 'Short & Long-Term Options',
+        description: 'Flexible storage duration plans tailored to your exact timeline whether you need days, weeks, or months.',
+        icon: 'tabler:calendar-time',
+      },
+      {
+        title: 'Monitored Inventory Security',
+        description: 'Protected storage facilities designed to keep your goods safe, dry, and undamaged until you are ready to receive them.',
+        icon: 'tabler:shield-lock',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=2070&q=80',
+      alt: 'Storage Facility Service',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Secure Storage Until You Are Ready</h3>
+      Clean, monitored facilities designed to keep your assets protected.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- 6. Cleaning Service **************** -->
+
+  <Content
+    isAfterContent
+    isReversed
+    tagline="Property Hygiene"
+    title="Cleaning Service"
+    items={[
+      {
+        title: 'Pre-Move Deep Cleaning',
+        description: 'Preparing your new home or commercial facility with deep cleaning so it is completely fresh before moving items in.',
+        icon: 'tabler:sparkles',
+      },
+      {
+        title: 'Post-Move Site Cleanup',
+        description: 'Thorough cleaning of your previous premises after packing and loading to leave the old site spotless.',
+        icon: 'tabler:sparkles',
+      },
+      {
+        title: 'Full Sanitization & Waste Removal',
+        description: 'Clearing out debris, packaging waste, and dust to ensure a clean, move-in ready environment.',
+        icon: 'tabler:trash',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=2070&q=80',
+      alt: 'Cleaning Service',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">A Spotless Transition</h3>
+      Leave your old location pristine or walk into a perfectly clean new space.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+```
 
   <!-- Steps Widget ****************** -->
 
-  <Steps
-    title="Get your dream website up and running in no time with AstroWind."
+ <Steps
+    title="How We Save You Days of Moving Time & Stress"
     items={[
       {
-        title: 'Step 1: <span class="font-medium">Download</span>',
+        title: 'Step 1: <span class="font-medium">Send Photos & Request Survey</span>',
         description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: 'tabler:package',
+          "Skip lengthy consultations! Send a quick video or photos of your items via Telegram/WhatsApp, or let our supervisor conduct an on-site survey to get an instant, accurate estimate.",
+        icon: 'tabler:camera',
       },
       {
-        title: 'Step 2: <span class="font-medium">Add content</span>',
+        title: 'Step 2: <span class="font-medium">4-Hour Complete Relocation</span>',
         description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: 'tabler:letter-case',
+          "It takes us just 4 hours to pack, unpack, and deliver all your items from the old home to the new one. Our experts complete in hours what would take you days of laborious work.",
+        icon: 'tabler:stopwatch',
       },
       {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
+        title: 'Step 3: <span class="font-medium">Zero Damage & Zero Hassle</span>',
         description:
-          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
-        icon: 'tabler:paint',
+          "Eliminate the risk of broken valuables or frustrating negotiations with informal local movers. We take 100% responsibility with top-tier packing materials.",
+        icon: 'tabler:shield-check',
       },
       {
-        title: 'Ready!',
+        title: 'Settled in Your New Home!',
         icon: 'tabler:check',
       },
     ]}
@@ -501,44 +626,35 @@ const structuredData = [
 
   <!-- FAQs Widget ******************* -->
 
-  <FAQs
+<FAQs
     id="faqs"
     title="Frequently Asked Questions"
-    subtitle="The questions people ask before they clone the repository, answered briefly. For step-by-step tasks, the repository ships skills your AI coding assistant can follow."
+    subtitle="Everything you need to know about moving, packing, storage, and pricing with Trustpack Mover."
     tagline="FAQs"
     schema
     items={[
       {
-        title: 'What is AstroWind?',
+        title: 'Do we have to prepare the packing materials (boxes, plaster, bubble wrap)?',
         description:
-          'A free, open-source template for Astro and Tailwind CSS: a static site with a header, footer, twenty-plus reusable widgets, a Markdown/MDX blog, dark mode, RTL support, image optimisation, SEO metadata and an RSS feed, ready to be customised and deployed anywhere static files are served.',
+          'No, Trustpack Mover provides all necessary high-grade packing materials, including cardboard boxes, plaster, plastic wrap, and heavy-duty bubble wrap. Our team brings everything required to ensure your belongings are fully secured before transport.',
       },
       {
-        title: 'What do I need to start?',
+        title: 'Do you unpack and repack electronic items such as TVs?',
         description:
-          'A current Node.js (the exact minimum is in <code>package.json</code>) and a terminal. Run <code>npm create astro@latest -- --template arthelokyo/astrowind</code>, then <code>npm run dev</code>. Site name, URL, metadata and blog options live in <code>src/config.yaml</code>; colours and fonts in <code>src/components/CustomStyles.astro</code>.',
+          'Yes, we carefully unmount, pack, and repack any items we dismantle. Our specialists handle large smart TVs (65" to 100"+) using custom protective packaging and provide safe wall-mounting and installation at your new venue.',
       },
       {
-        title: 'Can I use it for a site without a blog?',
+        title: 'Do you have a storage facility if we need to keep our items for a while?',
         description:
-          'Yes. Set <code>apps.blog.isEnabled: false</code> in <code>src/config.yaml</code> and the blog routes, the RSS feed and the post widgets disappear from the build. The rest of the template is unaffected.',
+          'Yes, we operate a trusted warehouse storage facility where you can safely store your home or office belongings. Whether you need temporary storage for a few days, weeks, or months, your goods remain clean, monitored, and protected until your new location is ready.',
       },
       {
-        title: 'How do I change colours, fonts and the logo?',
+        title: 'How is payment determined?',
         description:
-          'Colours are CSS variables in <code>src/components/CustomStyles.astro</code> (light and dark), fonts are configured in <code>astro.config.ts</code> through Astro’s Fonts API, and the logo is <code>src/components/Logo.astro</code>. The same variables also feed the shadcn/ui-compatible tokens, so shadcn-style components pick up your theme.',
-      },
-      {
-        title: 'Does it work with an AI coding assistant?',
-        description:
-          'It is built for it. The repository includes <code>AGENTS.md</code> with the project conventions and a <code>.agents/skills/</code> folder with step-by-step guides for common tasks (disable the blog, set an Open Graph image, deploy under a base path, connect a CMS, deploy to Cloudflare…), so tools like Claude Code, Codex or Cursor can do them reliably.',
-      },
-      {
-        title: 'Where can I deploy it and what does it cost?',
-        description:
-          'Anywhere that serves static files: Vercel, Netlify, Cloudflare, GitHub Pages, an nginx container (a Dockerfile is included) or your own server. The template is MIT licensed and free for personal and commercial projects.',
+          'Pricing is determined through a simple process: call our hotlines (0968777773 / 0909388181) or send a photo/video of your items via Telegram or WhatsApp. Share your pickup and destination addresses, dates, and floor numbers, and our pricing team or on-site supervisor will calculate a transparent estimate covering vehicle, labor, and packaging costs.',
       },
     ]}
+
   >
     <Fragment slot="bg">
       <div

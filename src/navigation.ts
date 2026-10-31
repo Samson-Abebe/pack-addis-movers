@@ -141,6 +141,6 @@ export const footerData = {
     { ariaLabel: 'Phone', icon: 'tabler:phone', href: 'tel:+251900000000' },
   ],
   footNote: `
-    © ${new Date().getFullYear()} <span class="font-semibold text-primary">Trustpack and Move</span>. All rights reserved.
+    © ${new Date().getFullYear()} <span class="font-semibold text-primary">Trustpack Move</span>. All rights reserved.
   `,
 };

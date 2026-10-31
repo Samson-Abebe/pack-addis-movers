@@ -1,9 +1,25 @@
 ---
 import { SITE } from 'astrowind:config';
+import darkLogo from '~/assets/images/logo.png';
+import logo from '~/assets/images/logo1.png';
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
->
-  🚀 {SITE?.name}
+<span class="flex items-center gap-2">
+  <!-- Light mode logo -->
+  <img
+    src={logo.src}
+    alt={`${SITE?.name} logo`}
+    class="w-10 h-10 object-contain block dark:hidden"
+  />
+
+  <!-- Dark mode logo -->
+  <img
+    src={darkLogo.src}
+    alt={`${SITE?.name} logo`}
+    class="w-10 h-10 object-contain hidden dark:block"
+  />
+
+  <span class="text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">
+    {SITE?.name}
+  </span>
 </span>

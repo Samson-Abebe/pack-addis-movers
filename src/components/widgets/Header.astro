@@ -88,69 +88,91 @@ const persistKey = `header-${Array.from(
           <ToggleMenu />
         </div>
       </div>
+
+      <!-- Navigation Menu -->
       <nav
         class="items-center w-full lg:w-auto hidden lg:flex lg:mx-5 text-default overflow-y-auto overflow-x-hidden lg:overflow-visible lg:justify-self-center max-h-[calc(100vh-5rem)] lg:max-h-none py-4 lg:py-0"
         aria-label="Main navigation"
       >
-        <ul
-          class="flex flex-col lg:flex-row lg:self-center w-full lg:w-auto text-xl lg:text-[0.9375rem] tracking-[0.01rem] font-medium lg:justify-center space-y-1 lg:space-y-0"
-        >
-          {
-            links.map(({ text, href, links }) => (
-              <li class={links?.length ? 'dropdown group' : ''}>
-                {links?.length ? (
-                  <>
-                    <button
-                      type="button"
-                      class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center justify-between w-full lg:w-auto whitespace-nowrap"
+        <div class="w-full lg:w-auto flex flex-col">
+          <!-- Mobile-only actions and theme toggle placed ABOVE the menu links -->
+          <div class="flex items-center justify-between pb-4 mb-3 border-b border-gray-200 dark:border-slate-800 lg:hidden px-4">
+            <div class="flex">
+              {showToggleTheme && <ToggleTheme iconClass="w-6 h-6" />}
+            </div>
+            {
+              actions?.length ? (
+                <div class="flex items-center">
+                  {actions.map((btnProps) => (
+                    <Button {...btnProps} class="py-2 px-4 font-semibold shadow-none text-sm w-auto" />
+                  ))}
+                </div>
+              ) : null
+            }
+          </div>
+
+          <ul
+            class="flex flex-col lg:flex-row lg:self-center w-full lg:w-auto text-xl lg:text-[0.9375rem] tracking-[0.01rem] font-medium lg:justify-center space-y-1 lg:space-y-0"
+          >
+            {
+              links.map(({ text, href, links }) => (
+                <li class={links?.length ? 'dropdown group' : ''}>
+                  {links?.length ? (
+                    <>
+                      <button
+                        type="button"
+                        class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center justify-between w-full lg:w-auto whitespace-nowrap cursor-pointer"
+                      >
+                        <span>{text}</span>
+                        <Icon
+                          name="tabler:chevron-down"
+                          class="w-3.5 h-3.5 ml-2 lg:ml-0.5 rtl:ml-0 rtl:mr-0.5 transition-transform duration-200 pointer-events-none"
+                        />
+                      </button>
+                      <ul class="dropdown-menu lg:backdrop-blur-md dark:lg:bg-slate-900 dark:lg:border dark:lg:border-slate-700/50 rounded lg:absolute pl-4 lg:pl-0 font-medium lg:bg-white/90 lg:min-w-[200px] drop-shadow-xl space-y-1 py-1 bg-gray-50/50 dark:bg-slate-800/50 lg:bg-white/95">
+                        {links.map(({ text: text2, href: href2 }) => (
+                          <li>
+                            <a
+                              class:list={[
+                                'first:rounded-t last:rounded-b lg:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2.5 px-5 block whitespace-nowrap text-lg lg:text-sm',
+                                { 'aw-link-active': isActive(href2) },
+                              ]}
+                              href={href2}
+                            >
+                              {text2}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  ) : (
+                    <a
+                      class:list={[
+                        'hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap',
+                        { 'aw-link-active': isActive(href) },
+                      ]}
+                      href={href}
                     >
-                      <span>{text}</span>
-                      <Icon
-                        name="tabler:chevron-down"
-                        class="w-3.5 h-3.5 ml-2 lg:ml-0.5 rtl:ml-0 rtl:mr-0.5 transition-transform duration-200"
-                      />
-                    </button>
-                    <ul class="dropdown-menu lg:backdrop-blur-md dark:lg:bg-slate-900 dark:lg:border dark:lg:border-slate-700/50 rounded lg:absolute pl-4 lg:pl-0 font-medium lg:bg-white/90 lg:min-w-[200px] drop-shadow-xl hidden lg:group-hover:block space-y-1 py-1 bg-gray-50/50 dark:bg-slate-800/50 lg:bg-white/90">
-                      {links.map(({ text: text2, href: href2 }) => (
-                        <li>
-                          <a
-                            class:list={[
-                              'first:rounded-t last:rounded-b lg:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2.5 px-5 block whitespace-nowrap text-lg lg:text-sm',
-                              { 'aw-link-active': isActive(href2) },
-                            ]}
-                            href={href2}
-                          >
-                            {text2}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                ) : (
-                  <a
-                    class:list={[
-                      'hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap',
-                      { 'aw-link-active': isActive(href) },
-                    ]}
-                    href={href}
-                  >
-                    {text}
-                  </a>
-                )}
-              </li>
-            ))
-          }
-        </ul>
+                      {text}
+                    </a>
+                  )}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </nav>
+
+      <!-- Desktop Actions & Theme Toggle Block -->
       <div
         class:list={[
           { 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' },
-          'hidden lg:self-center lg:flex items-center lg:mb-0 fixed w-full lg:w-auto lg:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 lg:p-0 lg:justify-self-end bg-page lg:bg-transparent border-t lg:border-t-0 border-gray-200 dark:border-slate-800',
+          'hidden lg:self-center lg:flex items-center lg:mb-0 lg:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 lg:justify-self-end bg-transparent',
         ]}
       >
         <div class="items-center flex justify-between w-full lg:w-auto">
           <div class="flex">
-            {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 lg:w-5 lg:h-5 lg:inline-block" />}
+            {showToggleTheme && <ToggleTheme iconClass="w-5 h-5 lg:inline-block" />}
           </div>
           {
             actions?.length ? (
@@ -173,6 +195,29 @@ const persistKey = `header-${Array.from(
   aw-header {
     display: contents;
   }
+
+  /* Mobile Dropdown Accordion Behavior (Clean CSS State Control) */
+  @media (max-width: 1023px) {
+    .dropdown > .dropdown-menu {
+      display: none;
+    }
+    .dropdown.mobile-open > .dropdown-menu {
+      display: block;
+    }
+    .dropdown.mobile-open > button svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  /* Desktop Hover Behavior (Untouched PC View) */
+  @media (min-width: 1024px) {
+    .dropdown:not(:hover) > .dropdown-menu {
+      display: none;
+    }
+    .dropdown:hover > .dropdown-menu {
+      display: block;
+    }
+  }
 </style>
 
 <script>
@@ -189,7 +234,6 @@ const persistKey = `header-${Array.from(
       const header = this.querySelector<HTMLElement>('#header');
       const toggle = this.querySelector<HTMLElement>('[data-aw-toggle-menu]');
       const nav = this.querySelector<HTMLElement>('#header nav');
-      const lastChild = this.querySelector<HTMLElement>('#header > div > div:last-child');
 
       this.updateActiveLinks();
       document.addEventListener('astro:page-load', this.onPageLoad);
@@ -200,14 +244,12 @@ const persistKey = `header-${Array.from(
         document.body.classList.remove('overflow-hidden');
         header?.classList.remove('h-screen', 'expanded', 'bg-page');
         nav?.classList.add('hidden');
-        lastChild?.classList.add('hidden');
         
-        // Reset mobile dropdowns when menu closes
-        this.querySelectorAll('.dropdown-menu').forEach((menu) => menu.classList.add('hidden'));
-        this.querySelectorAll('nav button svg').forEach((icon) => icon.classList.remove('rotate-180'));
+        // Reset all mobile dropdowns when burger menu closes
+        this.querySelectorAll('.dropdown').forEach((dropdown) => dropdown.classList.remove('mobile-open'));
       };
 
-      // Mobile menu toggle.
+      // Mobile burger menu toggle.
       toggle?.addEventListener('click', () => {
         const expanded = toggle.classList.toggle('expanded');
         toggle.setAttribute('aria-expanded', String(expanded));
@@ -216,31 +258,24 @@ const persistKey = `header-${Array.from(
         header?.classList.toggle('expanded');
         header?.classList.toggle('bg-page');
         nav?.classList.toggle('hidden');
-        lastChild?.classList.toggle('hidden');
       });
 
-      // Mobile navigation click handling (Accordion for dropdowns & auto-close on link click)
+      // Mobile dropdown accordion toggle (Open & Close smoothly on tap)
+      this.querySelectorAll<HTMLButtonElement>('.dropdown > button').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          if (window.innerWidth < 1024) {
+            e.preventDefault();
+            const dropdownLi = btn.closest('.dropdown');
+            if (dropdownLi) {
+              dropdownLi.classList.toggle('mobile-open');
+            }
+          }
+        });
+      });
+
+      // Close mobile menu when any regular link or submenu link is clicked
       nav?.addEventListener('click', (e) => {
         const target = e.target as HTMLElement;
-        const dropdownBtn = target.closest('button');
-
-        // If clicking a mobile dropdown button, toggle its sub-menu reliably via parent container
-        if (window.innerWidth < 1024 && dropdownBtn) {
-          const dropdownLi = dropdownBtn.closest('li.dropdown');
-          const dropdownMenu = dropdownLi?.querySelector('.dropdown-menu');
-
-          if (dropdownMenu) {
-            e.preventDefault();
-            dropdownMenu.classList.toggle('hidden');
-            const icon = dropdownBtn.querySelector('svg');
-            if (icon) {
-              icon.classList.toggle('rotate-180');
-            }
-            return;
-          }
-        }
-
-        // If clicking a normal link or a submenu link on mobile, close the mobile menu
         if (window.innerWidth < 1024 && target.closest('a')) {
           closeMenu();
         }

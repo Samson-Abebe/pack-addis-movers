@@ -4,6 +4,10 @@ import Button from '~/components/ui/Button.astro';
 
 import type { Hero as Props } from '~/types';
 
+interface ExtendedHeroProps extends Props {
+  slides?: Array<{ src: string; alt?: string }>;
+}
+
 const {
   title = await Astro.slots.render('title'),
   subtitle = await Astro.slots.render('subtitle'),
@@ -13,104 +17,148 @@ const {
   content = await Astro.slots.render('content'),
   actions = await Astro.slots.render('actions'),
   image = await Astro.slots.render('image'),
+  slides = [],
 
   id,
   bg = await Astro.slots.render('bg'),
-} = Astro.props;
+} = Astro.props as ExtendedHeroProps;
 
-// `image.aspect: 'auto'` shows the picture whole (transparent illustrations);
-// the default crops it to the hero frame.
 const { aspect: imageAspect, ...imageProps } = typeof image === 'object' && image ? image : { src: '', alt: '' };
 const imageWhole = imageAspect === 'auto';
+
+// Default images for the slider if none are passed in `slides`
+const defaultSlides = [
+  { src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80', alt: 'Slide 1' },
+  { src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80', alt: 'Slide 2' },
+  { src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80', alt: 'Slide 3' },
+];
+
+const activeSlides = slides.length > 0 ? slides : defaultSlides;
+
+
+
+
+
 ---
 
-<section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
+<section class="relative md:-mt-[76px] not-prose overflow-hidden" {...id ? { id } : {}}>
+  <!-- Background Decorator -->
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
     <slot name="bg">
-      {bg ? <Fragment set:html={bg} /> : null}
+      {bg ? <Fragment set:html={bg} /> : (
+        <div class="absolute inset-0 bg-gradient-to-b from-blue-50/50 via-transparent to-transparent dark:from-slate-900/50"></div>
+      )}
     </slot>
   </div>
+
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
     <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
-    <div class="py-12 md:py-20">
-      <div class="text-center pb-10 md:pb-16 max-w-5xl mx-auto">
-        {
-          badge && (
-            <span class="inline-block mb-4 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary dark:bg-primary/25 dark:text-blue-200 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+    <div class="py-12 md:py-20 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- Left Content Column -->
+        <div class="lg:col-span-6 text-left">
+          {badge && (
+            <span class="inline-block mb-4 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary dark:bg-primary/25 dark:text-blue-200">
               {badge}
             </span>
-          )
-        }
-        {
-          tagline && (
-            <p
-              class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-              set:html={tagline}
-            />
-          )
-        }
-        {
-          title && (
-            <h1
-              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading text-heading intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-              set:html={title}
-            />
-          )
-        }
-        <div class="max-w-3xl mx-auto">
-          {
-            subtitle && (
-              <p
-                class="text-xl text-muted mb-6 dark:text-slate-300 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-                set:html={subtitle}
-              />
-            )
-          }
-          {
-            actions && (
-              <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-                {Array.isArray(actions) ? (
-                  actions.map((action) => (
-                    <div class="flex w-full sm:w-auto">
-                      <Button {...(action || {})} class="w-full sm:mb-0" />
-                    </div>
-                  ))
-                ) : (
-                  <Fragment set:html={actions} />
-                )}
-              </div>
-            )
-          }
-        </div>
-        {content && <Fragment set:html={content} />}
-      </div>
-      <div
-        class="intersect-once intersect-no-queue intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-      >
-        {
-          image && (
-            <div class="relative m-auto max-w-5xl">
-              {typeof image === 'string' ? (
-                <Fragment set:html={image} />
+          )}
+          {tagline && (
+            <p class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase mb-2" set:html={tagline} />
+          )}
+          {title && (
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-6 font-heading text-heading" set:html={title} />
+          )}
+          {subtitle && (
+            <p class="text-lg sm:text-xl text-muted mb-8 dark:text-slate-300 leading-relaxed" set:html={subtitle} />
+          )}
+
+          {actions && (
+            <div class="flex flex-col sm:flex-row gap-4 mb-6">
+              {Array.isArray(actions) ? (
+                actions.map((action) => (
+                  <div class="flex w-full sm:w-auto">
+                    <Button {...(action || {})} class="w-full sm:mb-0 shadow-lg hover:shadow-xl transition-all duration-300" />
+                  </div>
+                ))
               ) : (
-                <Image
-                  class:list={[
-                    'mx-auto',
-                    imageWhole ? 'w-auto max-h-[32rem] object-contain md:max-h-[44rem]' : 'rounded-md w-full',
-                  ]}
-                  widths={[400, 768, 1024, 2040]}
-                  sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-                  loading="eager"
-                  fetchpriority="high"
-                  {...(imageWhole ? { inferSize: true, layout: 'none' } : { width: 1024, height: 576 })}
-                  format="webp"
-                  {...imageProps}
-                />
+                <Fragment set:html={actions} />
               )}
             </div>
-          )
-        }
+          )}
+
+          {content && <div class="mt-4 text-sm text-muted dark:text-slate-400" set:html={content} />}
+        </div>
+
+        <!-- Right Visual Column: Larger Static Image Cross-Fade Slider -->
+        <div class="col-span-1 lg:col-span-6 w-full">
+
+           <div class="relative w-full h-[260px] sm:h-[380px] lg:h-[480px] rounded-2xl overflow-hidden shadow-2xl border border-slate-200/50 dark:border-slate-800/50 bg-slate-100 dark:bg-slate-800">
+            
+            <!-- Slides Container -->
+            <div class="hero-slider relative w-full h-full">
+              {activeSlides.map((slide, index) => (
+                <div 
+                  class={`hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+                  data-slide-index={index}
+                >
+                  <img 
+                    src={slide.src} 
+                    alt={slide.alt || 'Hero Slide'} 
+                    class="w-full h-full object-cover" 
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none"></div>
+                </div>
+              ))}
+            </div>
+
+            <!-- Slide Indicator Dots -->
+            <div class="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+              {activeSlides.map((_, index) => (
+                <span 
+                  class={`hero-dot w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === 0 ? 'bg-white w-6' : 'bg-white/50'}`}
+                  data-dot-index={index}
+                ></span>
+              ))}
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  function setupHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    const intervalTime = 4000; // 4 seconds per slide
+
+    setInterval(() => {
+      // Hide current slide
+      slides[currentIndex].classList.remove('opacity-100', 'z-10');
+      slides[currentIndex].classList.add('opacity-0', 'z-0');
+      dots[currentIndex].classList.remove('bg-white', 'w-6');
+      dots[currentIndex].classList.add('bg-white/50');
+
+      // Move to next index
+      currentIndex = (currentIndex + 1) % slides.length;
+
+      // Show next slide
+      slides[currentIndex].classList.remove('opacity-0', 'z-0');
+      slides[currentIndex].classList.add('opacity-100', 'z-10');
+      dots[currentIndex].classList.remove('bg-white/50');
+      dots[currentIndex].classList.add('bg-white', 'w-6');
+    }, intervalTime);
+  }
+
+  // Initialize on page load & Astro View Transitions
+  setupHeroSlider();
+  document.addEventListener('astro:after-swap', setupHeroSlider);
+</script>
